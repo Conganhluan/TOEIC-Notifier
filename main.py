@@ -63,6 +63,6 @@ for person in taskList:
         body = MIMEText(content, 'plain', "UTF-8")
         msg.attach(body)
         s = smtplib.SMTP("localhost")
-        s.sendmail("toeic-notifier@conganhluan.com", person["email"], msg.as_string())
+        s.sendmail("toeic-notifier@conganhluan.com", person["gmail"], msg.as_string())
         s.quit()
         '''
