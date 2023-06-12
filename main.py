@@ -25,13 +25,13 @@ for person in taskList:
         new_tests = []          # not in file
         
         # Get the saved dates
-        if exists(join(dirname(__file__), "users", person["name"], str(exam["id"]) + ".txt")):
-            readFile =  open(join(dirname(__file__), "users", person["name"], str(exam["id"]) + ".txt"), "r", encoding="UTF-8")
+        if exists(join(dirname(__file__), "users", person["name"], exam["id"] + ".txt")):
+            readFile =  open(join(dirname(__file__), "users", person["name"], exam["id"] + ".txt"), "r", encoding="UTF-8")
             saved_tests = readFile.readlines()
             readFile.close()
 
         # Get the new read dates and compare to saved dates to find the lately update dates
-        url = "https://iigvietnam.com/lich-thi/?test_type=" + str(exam["id"]) + "&location=" + str(exam["location id"]) + "&start_date=" + exam["start date"] + "&end_date=" + exam["end date"]
+        url = "https://iigvietnam.com/lich-thi/?test_type=" + exam["id"] + "&location=" + exam["location id"] + "&start_date=" + exam["start date"] + "&end_date=" + exam["end date"]
         reader = BS(requests.get(url).content, "lxml").find_all("td")
         
         index = 1
@@ -44,7 +44,7 @@ for person in taskList:
                 index += 1
         
         # Update the list of saved exam
-        writeFile = open(join(dirname(__file__), "users", person["name"], str(exam["id"]) + ".txt"), "w", encoding="UTF-8")
+        writeFile = open(join(dirname(__file__), "users", person["name"], exam["id"] + ".txt"), "w", encoding="UTF-8")
         for test in saved_tests:
             writeFile.write(test)
         writeFile.close()
@@ -52,9 +52,9 @@ for person in taskList:
         # Send email
         '''
         msg = MIMEMultipart('alternative')
-        msg['Subject'] = "Lately updated schedule for the exam " + str(exam["id"])
-        msg['From'] = "TOEIC Notifier"
-        msg['To'] = person["name"]
+        msg['Subject'] = "Lately updated schedule for the exam " + exam["id"]
+        msg['From'] = "<sender_email>"
+        msg['To'] = person["gmail"]
 
         content = ""
         for exam in new_exams:
@@ -63,6 +63,6 @@ for person in taskList:
         body = MIMEText(content, 'plain', "UTF-8")
         msg.attach(body)
         s = smtplib.SMTP("localhost")
-        s.sendmail("toeic-notifier@conganhluan.com", person["gmail"], msg.as_string())
+        s.sendmail("sender_email>", person["gmail"], msg.as_string())
         s.quit()
         '''
