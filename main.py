@@ -52,17 +52,18 @@ for person in taskList:
         # Send email
         '''
         msg = MIMEMultipart('alternative')
-        msg['Subject'] = "Lately updated schedule for the exam " + exam["id"]
+        msg['Subject'] = "Cập nhật mới nhất cho lịch thi có mã số " + exam["id"]
         msg['From'] = "<sender_email>"
         msg['To'] = person["gmail"]
 
-        content = ""
+        content = "Xin chào " + person["name"] + ", đây là những cập nhật mới nhất đối với lịch thi mà bạn đang quan tâm:\n"
         for exam in new_exams:
             content = content + exam + "\n"
 
         body = MIMEText(content, 'plain', "UTF-8")
         msg.attach(body)
         s = smtplib.SMTP("localhost")
+        #s.login(SMTP_user, SMTP_password)
         s.sendmail("sender_email>", person["gmail"], msg.as_string())
         s.quit()
         '''
