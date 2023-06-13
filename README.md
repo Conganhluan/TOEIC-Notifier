@@ -76,6 +76,7 @@ Hãy lưu ý những điều sau đây để tệp **information.json** có ý n
 3. Các id phải được viết trong dấu **" "**
 4. *start date* và *end date* phải được viết dưới dạng mm/dd/yyyy (ví dụ: 12/31/2023)
 5. Không được để trống hai trường dữ liệu *id* và *location id* của exam, nếu không có thể dẫn đến kết quả không mong muốn
-6. Mỗi trường dữ liệu id (*id* và *location id*) chỉ điền một id mà mình muốn, nếu có nhiều hơn một kì thi hoặc một địa điểm cố định cho cùng một kì thi thì phải tách ra thành 2 exam khác nhau.  
+6. Mỗi trường dữ liệu id (*id* và *location id*) chỉ điền một id mà mình muốn, nếu có nhiều hơn một kì thi hoặc một địa điểm cố định cho cùng một kì thi thì phải tách ra thành 2 exam khác nhau
+7. Phải tạo một thư mục **user** trong cùng thư mục với **main.py** để không bị lỗi  
   
 Để sử dụng chương trình, bạn chỉ cần đặt lệnh `python /path/to/main.py` cho crontab chạy mỗi ngày là hoàn thành . Nếu có bất kì lỗi phát sinh nào thì xin vui lòng liên hệ với mình để mình có thể sửa chữa một cách sớm nhất!
